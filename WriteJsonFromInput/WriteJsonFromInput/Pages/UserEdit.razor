@@ -1,0 +1,70 @@
+﻿@page "/UserEdit"
+@using System.IO
+@using System.Text.Json
+@using WriteJsonFromInput.Data
+
+<h3>User Data Json</h3>
+
+<div class="card m-3">
+    <div class="card-body">
+        <p>@jsonMessage</p>
+        <EditForm EditContext="@editContext" @onreset="onReset" OnValidSubmit="@onValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group col-5">
+                <label>First Name : </label>
+                <InputText @bind-Value="user.FirstName" class="form-control" />
+                <ValidationMessage For="@(()=>user.FirstName)" />
+            </div>
+            <div class="form-group col-5">
+                <label>Last Name : </label>
+                <InputText @bind-Value="user.LastName" class="form-control" />
+                <ValidationMessage For="@(()=>user.LastName)" />
+            </div>
+            <div class="form-group col-5">
+                <label>Birthday : </label>
+                <InputDate @bind-Value="user.DateOfBirth" class="form-control"/>
+                <ValidationMessage For="@(()=>user.DateOfBirth)" />
+            </div>
+            <div class="form-group col-5">
+                <label>Email : </label>
+                <InputText @bind-Value="user.Email" class="form-control" />
+                <ValidationMessage For="@(()=>user.Email)" />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private User user = new User();
+    private EditContext editContext;
+    private string jsonPath = @"/Users/bahk_insung/Projects/WriteJsonFromInput/WriteJsonFromInput/Pages/userList.json";
+    private string jsonMessage = "";
+    private User[] users;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(user);
+    }
+
+    private void onReset()
+    {
+        user = new User();
+        editContext = new EditContext(user);
+    }
+
+    private void onValidSubmit()
+    {
+        jsonMessage = JsonSerializer.Serialize(user);
+        using (TextWriter tw = new StreamWriter(jsonPath))
+        {
+            tw.WriteLine(jsonMessage);
+        }
+        Console.WriteLine(jsonMessage);
+    }
+}
