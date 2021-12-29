@@ -1,0 +1,46 @@
+﻿@page "/UserRead"
+@using WriteJsonFromInput.Data
+@using Newtonsoft.Json.Linq
+@using System.Text.Json
+@using System.IO
+
+<h3>UserRead Page</h3>
+
+@if (user == null)
+{
+    <p>Sorry. Something problem with file.</p>
+}
+
+else
+{
+    <p>User Id : @user.Id</p>
+    <p>User Full name : @user.FirstName @user.LastName</p>
+    <p>User Birthday : @user.DateOfBirth</p>
+    <p>User Email : @user.Email</p>
+}
+
+<h4>Json Original File Content</h4>
+<code>
+    @jsonFile
+</code>
+
+@code {
+    User user = new User();
+    //string jsonBeauti 
+    string jsonFile = File.ReadAllText(@"wwwroot/userList.json");
+
+    protected override void OnInitialized()
+    {
+        user = JsonSerializer.Deserialize<User>(jsonFile);
+
+    }
+
+    public class Users
+    {
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime DateOfTime { get; set; }
+        public string Email { get; set; }
+    }
+}
