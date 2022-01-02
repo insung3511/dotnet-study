@@ -1,0 +1,178 @@
+﻿@page "/WriteBoard"
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@using WriteJsonFromInput.Data
+@using System.Text.Json
+@using System.IO
+@inject IWebHostEnvironment env
+@inject ILogger<WriteBoard> Logger
+
+<h3>WriteBlog Page</h3>
+
+<!--
+<div class="col-4">
+    <img src="@ImageDataURL" style="width: 250px; height: 250px;" />
+    <InputFile OnChange="@OnInputFileChanged"></InputFile> <br /> <br />
+    <p>Your file size is : @fileSize Bytes</p>
+</div>
+-->
+
+<div>
+    <label>
+        <p>Upload File here : </p>
+        <InputFile OnChange="@LoadFiles" multiple />
+    </label>
+</div>
+<div>
+    <div>
+        <EditForm EditContext="@editContext" @onreset="onReset" OnValidSubmit="@onValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <!--Input blog title-->
+            <div>
+                <label>게시물 제목 : </label>
+                <InputText @bind-Value="@blog.BlogTitle" />
+                <ValidationMessage For="@(()=>blog.BlogTitle)" />
+            </div>
+
+            <!--Input blog describtion-->
+            <div>
+                <label>게시물 설명 : </label>
+                <InputText @bind-Value="@blog.BlogSubTitle" />
+                <ValidationMessage For="@(()=>blog.BlogSubTitle)" />
+            </div>
+
+            <!--Input blog homework bool-->
+            <div>
+                <label>과제 유무 : </label>
+                <InputCheckbox @bind-Value="@blog.BlogHomework" />
+                <ValidationMessage For="@(()=>blog.BlogHomework)" />
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+<code>@jsonMessage</code>
+
+<!--
+@if (isLoading)
+{
+    <p>Uploading...</p>
+}
+
+else
+{
+    <ul>
+        @foreach (var file in loadedFiles)
+        {
+            <li>
+                <p>Uploaded File</p>
+                <ul>
+                    <li>Name: @file.Name</li>
+                    <li>Last modified: @file.LastModified.ToString()</li>
+                    <li>Size (bytes): @file.Size</li>
+                    <li>Content type: @file.ContentType</li>
+                </ul>
+            </li>
+        }
+
+        <li>
+            <p>Board</p>
+            <ul>
+                <li>Board Title : @blog.BlogTitle</li>
+                <li>Board describition : @blog.BlogSubTitle</li>
+                <li>Board homework : @blog.BlogHomework</li>
+            </ul>
+        </li>
+    </ul>
+}
+
+<br />
+<code>@ImageDataURL</code>
+    -->
+
+<hr />
+@code {
+    private Blog blog = new Blog();
+    private double fileSize { get; set; }
+    private string ImageDataURL { get; set; }
+    private string ContentWrite { get; set; }
+    private EditContext editContext { get; set; }
+    private string jsonPath = @"wwwroot/Data/boardList.json";
+    private string jsonMessage = "";
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(blog);
+    }
+
+    private void onReset()
+    {
+        editContext = new EditContext(blog);
+    }
+
+    private void onValidSubmit()
+    {
+        blog.BlogCreatedTime = DateTime.UtcNow;
+        blog.BlogId = 0;
+        Console.WriteLine(ContentWrite);
+        jsonMessage = JsonSerializer.Serialize(blog);
+        using (TextWriter tw = new StreamWriter(jsonPath))
+        {
+            tw.WriteLine(jsonMessage);
+        }
+        Console.WriteLine(jsonMessage);
+    }
+
+    /*
+    private async Task OnInputFileChanged(InputFileChangeEventArgs inputFileChangeEvent)
+    {
+        var file = inputFileChangeEvent.File;
+        var buffer = new byte[file.Size];
+        await file.OpenReadStream().ReadAsync(buffer);
+        ImageDataURL = $"data/png;base64,{Convert.ToBase64String(buffer)}";
+
+        fileSize = file.Size;
+    }
+    */
+
+    // Blazor server file upload (referece from docs.microsoft.com
+    private List<IBrowserFile> loadedFiles = new();
+    private long maxFileSize = 1024 * 15;
+    private int maxAllowedFiles = 3;
+    private bool isLoading;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+                loadedFiles.Add(file);
+
+                var trustedFileNameForFileStorage = Path.GetRandomFileName();
+                var path = Path.Combine(env.ContentRootPath,
+                        env.EnvironmentName, "unsafe_uploads",
+                        trustedFileNameForFileStorage);
+
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("File: {Filename} Error: {Error}",
+                    file.Name, ex.Message);
+            }
+        }
+
+        isLoading = false;
+    }
+}
