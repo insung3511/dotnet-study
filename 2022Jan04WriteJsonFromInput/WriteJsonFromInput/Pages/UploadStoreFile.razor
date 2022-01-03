@@ -1,0 +1,133 @@
+﻿@page "/UploadStoreFile"
+@using System.IO
+@using System.Text.Json
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.AspNetCore.Components.Forms
+@using WriteJsonFromInput.Data
+@inject IWebHostEnvironment env
+
+<h1>Blazor Server File upload (store on server)</h1>
+<code>@DefaultMessage</code>
+<!--
+<form @onsubmit="OnSubmit">
+    <InputFile OnChange="OnInputFileChange" multiple />
+
+    <br />
+    <br />
+
+    <button type="submit">Uploaded Selected File(s) </button>
+</form>
+-->
+
+<div>
+    <EditForm EditContext="@editContext" OnValidSubmit="@onValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <!--Input blog title-->
+        <div>
+            <label>게시물 제목 : </label>
+            <InputText @bind-Value="@blog.BlogTitle" />
+            <ValidationMessage For="@(()=>blog.BlogTitle)" />
+        </div>
+
+        <!--Input blog describtion-->
+        <div>
+            <label>게시물 설명 : </label>
+            <InputText @bind-Value="@blog.BlogSubTitle" />
+            <ValidationMessage For="@(()=>blog.BlogSubTitle)" />
+        </div>
+
+        <!--Input blog homework bool-->
+        <div>
+            <label>과제 유무 : </label>
+            <InputCheckbox @bind-Value="@blog.BlogHomework" />
+            <ValidationMessage For="@(()=>blog.BlogHomework)" />
+        </div>
+
+        <!--Image Upload-->
+
+        <InputFile OnChange="OnInputFileChange" multiple />
+
+        <br />
+        <br />
+
+        <!--############-->
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mr-1">Submit</button>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    string DefaultMessage = "No file(s) selected";
+    IReadOnlyList<IBrowserFile> selectedFiles;
+    private int maxFileSize = 1024 * 45;
+    private Blog blog = new Blog();
+    private EditContext editContext { get; set; }
+    private string jsonPath = @"wwwroot/Data/boardList.json";
+    private string jsonMessage = "";
+    private string ContentWrite = "";
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(blog);
+    }
+
+    private void onReset()
+    {
+        editContext = new EditContext(blog);
+    }
+
+    private async void onValidSubmit()
+    {
+        blog.BlogCreatedTime = DateTime.UtcNow;
+        blog.BlogId = 0;
+        //Console.WriteLine(ContentWrite);
+        jsonMessage = JsonSerializer.Serialize(blog);
+        using (TextWriter tw = new StreamWriter(jsonPath))
+        {
+            tw.WriteLine(jsonMessage);
+        }
+        //Console.WriteLine(jsonMessage);
+
+        foreach (var file in selectedFiles)
+        {
+            Stream stream = file.OpenReadStream();
+            var path = $"{env.WebRootPath}//UploadedData//{file.Name}";
+            FileStream fs = File.Create(path);
+
+            await stream.CopyToAsync(fs);
+            stream.Close();
+            fs.Close();
+        }
+
+        DefaultMessage = $"{selectedFiles.Count} file(s) uploaded on server";
+        this.StateHasChanged();
+    }
+
+
+    private void OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        selectedFiles = e.GetMultipleFiles(maxFileSize);
+        DefaultMessage = $"{selectedFiles} file(s) selected";
+        this.StateHasChanged();
+    }
+
+    private async void OnSubmit()
+    {
+        foreach (var file in selectedFiles)
+        {
+            Stream stream = file.OpenReadStream();
+            var path = $"{env.WebRootPath}//UploadedData//{file.Name}";
+            FileStream fs = File.Create(path);
+
+            await stream.CopyToAsync(fs);
+            stream.Close();
+            fs.Close();
+        }
+
+        DefaultMessage = $"{selectedFiles.Count} file(s) uploaded on server";
+        this.StateHasChanged();
+    }
+} 
