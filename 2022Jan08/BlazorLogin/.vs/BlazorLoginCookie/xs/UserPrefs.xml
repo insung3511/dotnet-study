@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{426E11A6-EE96-4392-A2B1-AC25E453BF8F}|BlazorLogin">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BlazorLogin/App.razor">
+    <Files>
+      <File FileName="BlazorLogin/Startup.cs" Line="62" Column="13" />
+      <File FileName="BlazorLogin/_Imports.razor" Line="10" Column="25" />
+      <File FileName="BlazorLogin/App.razor" Line="10" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BlazorLoginCookie" expanded="True">
+            <Node name="BlazorLoginCookie" expanded="True">
+              <Node name="App.razor" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.BlazorLoginCookie PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

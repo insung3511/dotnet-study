@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{45B0853D-D36E-482F-8EA9-FE668A650F5D}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BlazorCookieLogin/Startup.cs">
+    <Files>
+      <File FileName="BlazorCookieLogin/Controllers/UserController.cs" Line="28" Column="5" />
+      <File FileName="BlazorCookieLogin/Startup.cs" Line="1" Column="1" />
+      <File FileName="BlazorCookieLogin/Program.cs" />
+      <File FileName="BlazorCookieLogin/Shared/LoginControl.razor" Line="32" Column="11" />
+      <File FileName="BlazorCookieLogin/Shared/MainLayout.razor" />
+      <File FileName="BlazorCookieLogin/_Imports.razor" />
+      <File FileName="BlazorCookieLogin/App.razor" Line="14" Column="59" />
+      <File FileName="BlazorCookieLogin/Pages/Login.cshtml" Line="1" Column="1" />
+      <File FileName="BlazorCookieLogin/Pages/Login.cshtml.cs" Line="42" Column="57" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BlazorCookieLogin" expanded="True">
+            <Node name="BlazorCookieLogin" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="Login.cshtml" expanded="True" />
+              </Node>
+              <Node name="Shared" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.BlazorCookieLogin PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

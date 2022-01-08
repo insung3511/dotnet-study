@@ -1,0 +1,26 @@
+﻿<CascadingAuthenticationState>
+    <Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true">
+        <Found Context="routeData">
+            <!--Login part-->
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                <!--Didn't login page-->
+                <NotAuthorized>
+                    <h1>Sorry</h1>
+                    <p>You're not login in to this server.</p>
+                </NotAuthorized>
+
+                <!--Logined-->
+                <Authorizing>
+                    <h1>Authentication in progress...</h1>
+                </Authorizing>
+            </AuthorizeRouteView>
+
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
