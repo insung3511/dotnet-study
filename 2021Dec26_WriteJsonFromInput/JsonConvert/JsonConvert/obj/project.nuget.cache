@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "3Zf0+uvbIztJTJcHs0cv76TscpyO/cvTSmdKMrMxjgV7sL0rDEKgmxbrQifdqTNJQyfhBOy0h36A1pnG6k023A==",
+  "success": true,
+  "projectFilePath": "/Users/bahk_insung/Projects/JsonConvert/JsonConvert/JsonConvert.csproj",
+  "expectedPackageFiles": [
+    "/Users/bahk_insung/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

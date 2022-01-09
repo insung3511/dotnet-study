@@ -1,0 +1,17 @@
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/JsonConvert.deps.json
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/JsonConvert.runtimeconfig.json
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/JsonConvert.runtimeconfig.dev.json
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/JsonConvert.dll
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/ref/JsonConvert.dll
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/JsonConvert.pdb
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/bin/Debug/net5.0/Newtonsoft.Json.dll
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.csproj.AssemblyReference.cache
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.AssemblyInfoInputs.cache
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.AssemblyInfo.cs
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.csproj.CoreCompileInputs.cache
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.csproj.CopyComplete
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.dll
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/ref/JsonConvert.dll
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.pdb
+/Users/bahk_insung/Projects/JsonConvert/JsonConvert/obj/Debug/net5.0/JsonConvert.genruntimeconfig.cache

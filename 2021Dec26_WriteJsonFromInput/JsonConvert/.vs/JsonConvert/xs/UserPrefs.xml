@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{C10E14C2-9460-417F-A33C-243E985BCAFA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JsonConvert/Program.cs">
+    <Files>
+      <File FileName="JsonConvert/Program.cs" Line="5" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="JsonConvert" expanded="True">
+            <Node name="JsonConvert" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.JsonConvert PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
